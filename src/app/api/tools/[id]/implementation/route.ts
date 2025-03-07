@@ -76,10 +76,9 @@ async function generateImplementationGuidance(
     USER CONTEXT:
     Goal: ${userContext.goal}
     Team Size: ${userContext.teamSize || 'Not specified'}
-    Time Available: ${userContext.timeAvailable || 'Not specified'}
+    Time Available: ${userContext.timeAvailable || 'Not specified'} (This is the time they can spend on the activity in minutes)
     Experience Level: ${userContext.experienceLevel || 'Not specified'}
     Industry: ${userContext.industry || 'Not specified'}
-    Budget Constraints: ${userContext.budget || 'Not specified'}
     Additional Context: ${userContext.additionalContext || 'None provided'}
     
     TOOL INFORMATION:
@@ -97,8 +96,10 @@ async function generateImplementationGuidance(
     1. A comprehensive implementation guide tailored to their specific context and goal
     2. A list of customized steps for their particular situation
     3. A list of specific materials they will need
-    4. A timeline broken down by phases that accounts for their time constraints
+    4. A timeline broken down by phases that accounts for their time constraints in minutes
     5. A list of expected outcomes they can anticipate
+    
+    IMPORTANT: The user has specified time in minutes, so make sure your implementation guidance and timeline fit within their available time of ${userContext.timeAvailable || 'the unspecified time'}.
     
     FORMAT INSTRUCTIONS:
     - Use markdown formatting for the implementation guide
@@ -158,28 +159,28 @@ This implementation guide has been tailored to your specific context. The ${tool
 
 ### Key Considerations
 - Adapted for a team size of ${userContext.teamSize || 'your team'}
-- Modified to fit within ${userContext.timeAvailable || 'your available time'}
+- Modified to fit within ${userContext.timeAvailable || 'your available time'} time frame
 - Adjusted for ${userContext.experienceLevel || 'your experience level'}
 - Contextualized for the ${userContext.industry || 'your industry'} industry
 
 ### Getting Started
 
 **First steps** are crucial for success with ${tool.name}. Make sure to:
-1. Schedule a kickoff meeting with all stakeholders
-2. Set clear expectations and roles
-3. Prepare all necessary materials in advance
+1. Schedule a kickoff meeting with all stakeholders (5 minutes)
+2. Set clear expectations and roles (5 minutes)
+3. Prepare all necessary materials in advance (5-10 minutes)
 
 ## Implementation Process
 
 The implementation process consists of several phases:
 
-### Preparation Phase
+### Preparation Phase (10-15 minutes)
 Before diving into the core activities, it's important to **establish a solid foundation**. This includes:
 * Gathering relevant data
 * Setting up the workspace
 * Briefing your team
 
-### Execution Phase
+### Execution Phase (${tool.timeRequired.includes('30-60') ? '20-30' : tool.timeRequired.includes('15-30') ? '10-15' : '30-45'} minutes)
 This is where the main work happens. Focus on:
 - Following the structured process
 - Encouraging participation from all team members
@@ -188,11 +189,11 @@ This is where the main work happens. Focus on:
 NOTE: This is MOCK GUIDANCE. To get actual AI-powered implementation guidance, please configure a valid OpenAI API key in your .env.local file.`,
 
     customSteps: [
-      `[MOCK DATA] **Define your specific objectives** related to "${userContext.goal}"`,
-      `[MOCK DATA] Prepare your team with necessary context and background`,
-      `[MOCK DATA] Execute a simplified version of ${tool.name}`,
-      `[MOCK DATA] **Capture and analyze outputs**`,
-      `[MOCK DATA] Implement findings into your current workflows`
+      `[MOCK DATA] **Define your specific objectives** related to "${userContext.goal}" (5 minutes)`,
+      `[MOCK DATA] Prepare your team with necessary context and background (5-10 minutes)`,
+      `[MOCK DATA] Execute a simplified version of ${tool.name} (${tool.timeRequired.includes('30-60') ? '20-30' : tool.timeRequired.includes('15-30') ? '10-15' : '30-45'} minutes)`,
+      `[MOCK DATA] **Capture and analyze outputs** (10 minutes)`,
+      `[MOCK DATA] Implement findings into your current workflows (5-10 minutes)`
     ],
     
     materials: [
@@ -201,19 +202,21 @@ NOTE: This is MOCK GUIDANCE. To get actual AI-powered implementation guidance, p
       `[MOCK DATA] **Customized worksheets** for your team's needs`
     ],
     
-    timeline: `[MOCK DATA] ## Suggested Timeline
+    timeline: `[MOCK DATA] ## Minute-by-Minute Timeline
 
-### Week 1: Preparation
-- Days 1-2: Team orientation and background research
-- Days 3-5: Setup and material preparation
+### Phase 1: Setup (0-10 minutes)
+- 0-5 min: Brief team members on goals and process
+- 5-10 min: Distribute materials and organize workspace
 
-### Week 2: Implementation
-- Days 1-3: Execute core activities
-- Days 4-5: Analyze initial outputs
+### Phase 2: Core Activity (10-${tool.timeRequired.includes('30-60') ? '40' : tool.timeRequired.includes('15-30') ? '25' : '50'} minutes)
+- 10-15 min: Introduce the problem and context
+- 15-${tool.timeRequired.includes('30-60') ? '35' : tool.timeRequired.includes('15-30') ? '25' : '45'} min: Execute the main ${tool.name} activity
+- ${tool.timeRequired.includes('30-60') ? '35-40' : tool.timeRequired.includes('15-30') ? '' : '45-50'} min: **Refine outputs**
 
-### Week 3: Integration
-- Days 1-3: **Refine findings**
-- Days 4-5: Integrate into existing processes`,
+### Phase 3: Wrap-up (Final 10 minutes)
+- Summarize key findings
+- Assign next steps
+- Schedule follow-up if needed`,
     
     expectedOutcomes: [
       `[MOCK DATA] Clear insights related to "${userContext.goal}"`,

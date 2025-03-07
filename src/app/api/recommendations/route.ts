@@ -62,11 +62,12 @@ async function generateToolRecommendations(
     USER CONTEXT:
     Goal: ${userContext.goal}
     Team Size: ${userContext.teamSize || 'Not specified'}
-    Time Available: ${userContext.timeAvailable || 'Not specified'}
+    Time Available: ${userContext.timeAvailable || 'Not specified'} (This is the time they can spend on the activity in minutes)
     Experience Level: ${userContext.experienceLevel || 'Not specified'}
     Industry: ${userContext.industry || 'Not specified'}
-    Budget Constraints: ${userContext.budget || 'Not specified'}
     Additional Context: ${userContext.additionalContext || 'None provided'}
+    
+    IMPORTANT: The user has specified time in minutes, so make sure your recommended tools can realistically be completed within their available time of ${userContext.timeAvailable || 'the unspecified time'}.
     
     AVAILABLE TOOLS:
     ${tools.map(tool => `
@@ -150,29 +151,29 @@ function generateMockRecommendations(
 **Key Strengths:**
 * Perfect match for your experience level
 * Designed for teams of your size
-* Can be completed within your timeframe
+* Can be completed within your available time of ${userContext.timeAvailable || 'any timeframe'}
 
 The **${tool.category}** approach of this tool makes it particularly effective for your context because it focuses on structured problem-solving and collaborative engagement.`,
       implementationGuide: `[MOCK DATA] When implementing ${tool.name} for your specific context, focus on these key areas:
 
-### 1. Customize the Process
+### 1. Customize the Process (5-10 minutes)
 Adapt the standard approach to address your specific goal:
 * **Prioritize activities** that directly relate to "${userContext.goal}"
 * Modify templates to fit your industry context
-* Adjust the depth of analysis based on your time constraints
+* Adjust the depth of analysis based on your time constraints of ${userContext.timeAvailable || 'the available time'}
 
-### 2. Team Preparation
+### 2. Team Preparation (5-10 minutes)
 * Ensure everyone understands the purpose and expected outcomes
 * Assign clear roles and responsibilities
 * Provide any necessary background materials in advance
 
-### 3. Follow-up Activities
+### 3. Follow-up Activities (5 minutes)
 Document all insights and create an **action plan** for implementing the findings.`
     })),
-    summary: `[MOCK DATA] Based on your goal of "${userContext.goal}" and considering your specified constraints, I've recommended tools that provide a balance of structure and flexibility. These recommendations focus on ${selectedTools[0].category.toLowerCase()} and ${selectedTools[1].category.toLowerCase()} approaches that can be implemented with your team size and experience level.
+    summary: `[MOCK DATA] Based on your goal of "${userContext.goal}" and considering your specified constraints, I've recommended tools that provide a balance of structure and flexibility. These recommendations focus on ${selectedTools[0].category.toLowerCase()} and ${selectedTools[1].category.toLowerCase()} approaches that can be implemented within your timeframe of ${userContext.timeAvailable || 'any duration'}.
 
 **Why these recommendations work for you:**
-* They align with your timeframe of ${userContext.timeAvailable || 'your available time'}
+* They align with your available time of ${userContext.timeAvailable || 'any duration'}
 * They're appropriate for ${userContext.experienceLevel || 'your experience level'}
 * They address your specific industry challenges in ${userContext.industry || 'your industry'}
 

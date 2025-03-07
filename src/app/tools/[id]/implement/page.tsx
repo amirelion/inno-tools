@@ -39,9 +39,26 @@ import { jsPDF } from 'jspdf';
 import { useRouter } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 
-const experienceLevels = ['Beginner', 'Intermediate', 'Advanced'];
-const teamSizes = ['1-3 people', '4-10 people', '11-20 people', '21+ people'];
-const timeFrames = ['Less than a week', '1-2 weeks', '1 month', '2-3 months', '3+ months'];
+// Constants
+const EXPERIENCE_LEVELS = [
+  { value: 'Beginner', label: 'Beginner' },
+  { value: 'Intermediate', label: 'Intermediate' },
+  { value: 'Advanced', label: 'Advanced' }
+];
+
+const TEAM_SIZES = [
+  { value: '1-3 people', label: 'Small (1-3 people)' },
+  { value: '4-10 people', label: 'Medium (4-10 people)' },
+  { value: '10+ people', label: 'Large (10+ people)' }
+];
+
+const TIME_FRAMES = [
+  { value: '15-30 minutes', label: '15-30 minutes' },
+  { value: '30-60 minutes', label: '30-60 minutes' },
+  { value: '60-90 minutes', label: '60-90 minutes' },
+  { value: '90-120 minutes', label: '90-120 minutes' },
+  { value: '120+ minutes', label: 'Over 2 hours' }
+];
 
 // Custom styles for markdown rendering
 const markdownStyles = {
@@ -587,9 +604,9 @@ export default function ImplementationPage({ params }: { params: { id: string } 
                     onChange={handleChange}
                     variant="outlined"
                   >
-                    {teamSizes.map(size => (
-                      <MenuItem key={size} value={size}>
-                        {size}
+                    {TEAM_SIZES.map(size => (
+                      <MenuItem key={size.value} value={size.value}>
+                        {size.label}
                       </MenuItem>
                     ))}
                   </TextField>
@@ -605,9 +622,9 @@ export default function ImplementationPage({ params }: { params: { id: string } 
                     onChange={handleChange}
                     variant="outlined"
                   >
-                    {timeFrames.map(time => (
-                      <MenuItem key={time} value={time}>
-                        {time}
+                    {TIME_FRAMES.map(time => (
+                      <MenuItem key={time.value} value={time.value}>
+                        {time.label}
                       </MenuItem>
                     ))}
                   </TextField>
@@ -623,9 +640,9 @@ export default function ImplementationPage({ params }: { params: { id: string } 
                     onChange={handleChange}
                     variant="outlined"
                   >
-                    {experienceLevels.map(level => (
-                      <MenuItem key={level} value={level}>
-                        {level}
+                    {EXPERIENCE_LEVELS.map(level => (
+                      <MenuItem key={level.value} value={level.value}>
+                        {level.label}
                       </MenuItem>
                     ))}
                   </TextField>

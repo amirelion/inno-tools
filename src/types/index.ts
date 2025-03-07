@@ -21,7 +21,6 @@ export interface UserContext {
   timeAvailable?: string;
   experienceLevel?: string;
   industry?: string;
-  budget?: string;
   additionalContext?: string;
 }
 
