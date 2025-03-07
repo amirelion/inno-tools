@@ -7,24 +7,11 @@ const nextConfig = {
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
-  transpilePackages: [],
-  experimental: {
-    esmExternals: true,
-  },
+  // Simplified configuration that works well with Vercel
   webpack: (config) => {
     config.resolve.extensions.push('.ts', '.tsx', '.js', '.json');
-    
-    // Add .json handling explicitly
-    config.module.rules.push({
-      test: /\.json$/,
-      type: 'json',
-    });
-    
     return config;
-  },
-  env: {
-    NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000',
-  },
+  }
 };
 
 module.exports = nextConfig; 
