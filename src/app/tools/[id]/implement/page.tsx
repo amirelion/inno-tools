@@ -115,7 +115,6 @@ export default function ImplementationPage({ params }: { params: { id: string } 
     timeAvailable: '',
     experienceLevel: '',
     industry: '',
-    budget: '',
     additionalContext: ''
   });
   
@@ -559,11 +558,11 @@ export default function ImplementationPage({ params }: { params: { id: string } 
         // Context form
         <>
           <Box sx={{ mb: 4 }}>
-            <Typography variant="h4" gutterBottom>
-              Get Implementation Guidance
-            </Typography>
-            <Typography variant="subtitle1" gutterBottom>
+            <Typography variant="h3" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main' }}>
               {tool.name}
+            </Typography>
+            <Typography variant="h5" gutterBottom>
+              Get Implementation Guidance
             </Typography>
             <Typography variant="body1" color="text.secondary">
               Provide your project context to get customized implementation guidance for this innovation tool.
@@ -656,18 +655,6 @@ export default function ImplementationPage({ params }: { params: { id: string } 
                     value={formData.industry}
                     onChange={handleChange}
                     placeholder="e.g., Healthcare, Education, Finance"
-                    variant="outlined"
-                  />
-                </Grid>
-                
-                <Grid item xs={12}>
-                  <TextField
-                    fullWidth
-                    label="Budget Constraints (if any)"
-                    name="budget"
-                    value={formData.budget}
-                    onChange={handleChange}
-                    placeholder="Describe any budget limitations"
                     variant="outlined"
                   />
                 </Grid>

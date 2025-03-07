@@ -6,10 +6,7 @@ const nextConfig = {
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
-  skipMiddlewareUrlNormalize: true,
-  experimental: {
-    missingSuspenseWithCSRBailout: false,
-  }
+  skipMiddlewareUrlNormalize: true
 };
 
 module.exports = nextConfig; 

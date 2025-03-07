@@ -34,6 +34,7 @@ export interface ToolRecommendation {
 export interface RecommendationResponse {
   recommendations: ToolRecommendation[];
   summary: string;
+  usingMockData?: boolean;
 }
 
 export interface ImplementationRequest {
@@ -47,4 +48,5 @@ export interface ImplementationResponse {
   materials: string[];
   timeline: string;
   expectedOutcomes: string[];
+  usingMockData?: boolean;
 } 

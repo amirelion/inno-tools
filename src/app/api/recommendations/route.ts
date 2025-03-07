@@ -126,7 +126,16 @@ async function generateToolRecommendations(
     const content = response.choices[0]?.message?.content || '';
     const result = JSON.parse(content) as RecommendationResponse;
     
-    // Additional validation could go here
+    // Ensure tool IDs are properly set by matching with our dataset
+    result.recommendations = result.recommendations.map(rec => {
+      // Find the matching tool by name to ensure we have the correct ID
+      const matchingTool = tools.find(t => t.name === rec.tool.name);
+      if (matchingTool && !rec.tool.id) {
+        rec.tool.id = matchingTool.id;
+      }
+      return rec;
+    });
+    
     return result;
   } catch (error) {
     console.error('Error generating tool recommendations:', error);
