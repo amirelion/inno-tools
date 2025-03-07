@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import toolsData from '@/data/tools.json';
-import { InnovationTool } from '@/types';
+import toolsData from '../../../data/tools.json';
+import { InnovationTool } from '../../../types';
 
 export async function GET() {
   try {

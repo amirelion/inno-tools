@@ -14,8 +14,8 @@ import {
   Alert,
   CircularProgress
 } from '@mui/material';
-import { useRecommendationsStore } from '@/lib/store';
-import { UserContext } from '@/types';
+import { UserContext } from '../../types';
+import { useRecommendationsStore } from '../../lib/store';
 
 // Constants
 const EXPERIENCE_LEVELS = [

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { UserContext, RecommendationResponse, InnovationTool } from '@/types';
-import tools from '@/data/tools.json';
-import { openai, usingMockData } from '@/lib/openai';
+import { UserContext, RecommendationResponse, InnovationTool } from '../../../types';
+import toolsData from '../../../data/tools.json';
+import { openai, usingMockData } from '../../../lib/openai';
 
 // API route to generate tool recommendations
 export async function POST(request: NextRequest) {
@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
     
     if (openai && !usingMockData) {
       try {
-        recommendations = await generateToolRecommendations(userContext, tools as InnovationTool[]);
+        recommendations = await generateToolRecommendations(userContext, toolsData as InnovationTool[]);
       } catch (error) {
         console.error('Error calling OpenAI:', error);
         return NextResponse.json(
@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
       }
     } else {
       console.log('Using mock data for recommendations (OpenAI API not configured)');
-      recommendations = generateMockRecommendations(userContext, tools as InnovationTool[]);
+      recommendations = generateMockRecommendations(userContext, toolsData as InnovationTool[]);
     }
 
     return NextResponse.json({ 

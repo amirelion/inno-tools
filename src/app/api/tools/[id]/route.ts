@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import toolsData from '@/data/tools.json';
-import { InnovationTool } from '@/types';
+import { InnovationTool } from '../../../../types';
+import toolsData from '../../../../data/tools.json';
 
 export async function GET(
   request: NextRequest,
@@ -9,7 +9,7 @@ export async function GET(
   try {
     const { id } = params;
     const tools = toolsData as InnovationTool[];
-    const tool = tools.find((tool) => tool.id === id);
+    const tool = tools.find(t => t.id === id);
     
     if (!tool) {
       return NextResponse.json(

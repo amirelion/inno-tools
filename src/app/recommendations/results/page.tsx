@@ -23,7 +23,7 @@ import {
 } from '@mui/material';
 import { CheckCircle, Info as InfoIcon, ArrowBack, Download } from '@mui/icons-material';
 import Link from 'next/link';
-import { useRecommendationsStore } from '@/lib/store';
+import { useRecommendationsStore } from '../../../lib/store';
 import { jsPDF } from 'jspdf';
 import ReactMarkdown from 'react-markdown';
 

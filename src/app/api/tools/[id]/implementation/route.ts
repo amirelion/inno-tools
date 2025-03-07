@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { InnovationTool, UserContext, ImplementationResponse } from '@/types';
-import tools from '@/data/tools.json';
-import { openai, usingMockData } from '@/lib/openai';
+import { InnovationTool, UserContext, ImplementationResponse } from '../../../../../types';
+import toolsData from '../../../../../data/tools.json';
+import { openai, usingMockData } from '../../../../../lib/openai';
 
 // API route to generate implementation guidance for a specific tool
 export async function POST(
@@ -10,7 +10,7 @@ export async function POST(
 ) {
   try {
     // Get the tool by ID
-    const tool = (tools as InnovationTool[]).find(t => t.id === params.id);
+    const tool = (toolsData as InnovationTool[]).find(t => t.id === params.id);
     
     if (!tool) {
       return NextResponse.json(

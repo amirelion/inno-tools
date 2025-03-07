@@ -7,9 +7,9 @@ const nextConfig = {
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
+  transpilePackages: [],
   experimental: {
-    esmExternals: 'loose',
-    serverComponentsExternalPackages: [],
+    esmExternals: true,
   },
   webpack: (config) => {
     config.resolve.extensions.push('.ts', '.tsx', '.js', '.json');
@@ -24,9 +24,6 @@ const nextConfig = {
   },
   env: {
     NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000',
-  },
-  serverActions: {
-    bodySizeLimit: '2mb',
   },
 };
 

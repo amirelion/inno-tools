@@ -8,8 +8,8 @@ import {
   CircularProgress
 } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material/Select';
-import ToolCard from '@/components/ToolCard';
-import { InnovationTool } from '@/types';
+import ToolCard from '../../components/ToolCard';
+import { InnovationTool } from '../../types';
 
 // Constants for filters
 const CATEGORIES = [
