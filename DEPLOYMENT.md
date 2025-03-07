@@ -92,4 +92,32 @@ To test your Vercel deployment locally:
   - Max execution time: 10 seconds for hobby accounts (can be increased on paid plans)
   - Memory limits: 1024MB by default (configured in vercel.json)
   - Cold starts can occur after periods of inactivity
-- All client-side routes will return the index.html file (configured in vercel.json rewrites) 
+- All client-side routes will return the index.html file (configured in vercel.json rewrites)
+
+## Additional Steps
+
+### Remove git submodule relationship
+
+```bash
+rm -rf client
+```
+
+### Clone your actual client repository into the client folder
+
+```bash
+git clone https://your-client-repo-url.git client
+```
+
+### Remove the nested .git directory
+
+```bash
+rm -rf client/.git
+```
+
+### Add the files to your main repository
+
+```bash
+git add client/
+git commit -m "Add client code directly to repository"
+git push
+``` 

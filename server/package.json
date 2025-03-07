@@ -25,5 +25,8 @@
     "pdfkit": "^0.16.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
   }
 }
