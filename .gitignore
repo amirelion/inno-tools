@@ -6,6 +6,9 @@
 # Build files
 /client/build
 /server/dist
+/.next
+/.next/
+/out/
 
 # Environment files
 .env
