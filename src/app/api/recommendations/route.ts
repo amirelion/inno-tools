@@ -86,17 +86,22 @@ async function generateToolRecommendations(
     
     Also provide a summary paragraph of your overall recommendation strategy.
     
+    FORMAT INSTRUCTIONS:
+    - Use markdown formatting for the summary and implementation guidance
+    - Use **bold** for emphasis on important points
+    - Use bullet points where appropriate
+    
     Format your response as valid JSON matching this structure:
     {
       "recommendations": [
         {
           "tool": {FULL_TOOL_OBJECT},
           "score": number,
-          "reasoning": "string",
-          "implementationGuide": "string"
+          "reasoning": "string with markdown formatting",
+          "implementationGuide": "string with markdown formatting"
         }
       ],
-      "summary": "string"
+      "summary": "string with markdown formatting"
     }
   `;
 
@@ -105,7 +110,10 @@ async function generateToolRecommendations(
     const response = await openai.chat.completions.create({
       model: model,
       messages: [
-        { role: "system", content: "You are an expert innovation consultant who provides tool recommendations in JSON format." },
+        { 
+          role: "system", 
+          content: "You are an expert innovation consultant who provides tool recommendations in JSON format. Use markdown formatting with bold text and lists in your content." 
+        },
         { role: "user", content: prompt }
       ],
       temperature: 0.7,
@@ -137,14 +145,38 @@ function generateMockRecommendations(
     recommendations: selectedTools.map((tool, index) => ({
       tool: tool,
       score: 95 - (index * 10), // Mock scores: 95, 85, 75
-      reasoning: `[MOCK DATA] ${tool.name} aligns with your goal of "${userContext.goal}" because it ${tool.benefits[0].toLowerCase()} and ${tool.benefits[1].toLowerCase()}.`,
+      reasoning: `[MOCK DATA] ${tool.name} aligns with your goal of "${userContext.goal}" because it ${tool.benefits[0].toLowerCase()} and ${tool.benefits[1].toLowerCase()}.
+
+**Key Strengths:**
+* Perfect match for your experience level
+* Designed for teams of your size
+* Can be completed within your timeframe
+
+The **${tool.category}** approach of this tool makes it particularly effective for your context because it focuses on structured problem-solving and collaborative engagement.`,
       implementationGuide: `[MOCK DATA] When implementing ${tool.name} for your specific context, focus on these key areas:
-        1. Customize the process to address your specific goal
-        2. Allocate appropriate time considering your constraints
-        3. Prepare your team with necessary background information
-        4. Document outcomes and learnings for future reference`
+
+### 1. Customize the Process
+Adapt the standard approach to address your specific goal:
+* **Prioritize activities** that directly relate to "${userContext.goal}"
+* Modify templates to fit your industry context
+* Adjust the depth of analysis based on your time constraints
+
+### 2. Team Preparation
+* Ensure everyone understands the purpose and expected outcomes
+* Assign clear roles and responsibilities
+* Provide any necessary background materials in advance
+
+### 3. Follow-up Activities
+Document all insights and create an **action plan** for implementing the findings.`
     })),
     summary: `[MOCK DATA] Based on your goal of "${userContext.goal}" and considering your specified constraints, I've recommended tools that provide a balance of structure and flexibility. These recommendations focus on ${selectedTools[0].category.toLowerCase()} and ${selectedTools[1].category.toLowerCase()} approaches that can be implemented with your team size and experience level.
+
+**Why these recommendations work for you:**
+* They align with your timeframe of ${userContext.timeAvailable || 'your available time'}
+* They're appropriate for ${userContext.experienceLevel || 'your experience level'}
+* They address your specific industry challenges in ${userContext.industry || 'your industry'}
+
+To get the most from these tools, I suggest starting with ${selectedTools[0].name} to establish a foundation, then moving to the others as needed.
 
 NOTE: These are MOCK RECOMMENDATIONS. To get actual AI-powered recommendations, please configure a valid OpenAI API key in your .env.local file.`,
     usingMockData: true

@@ -1,12 +1,7 @@
 {
-  "/not-found": "app/not-found.js",
   "/tools/page": "app/tools/page.js",
-  "/tools/[id]/implement/page": "app/tools/[id]/implement/page.js",
   "/tools/[id]/page": "app/tools/[id]/page.js",
+  "/tools/[id]/implement/page": "app/tools/[id]/implement/page.js",
   "/recommendations/page": "app/recommendations/page.js",
-  "/recommendations/results/page": "app/recommendations/results/page.js",
-  "/api/tools/route": "app/api/tools/route.js",
-  "/api/tools/[id]/implementation/route": "app/api/tools/[id]/implementation/route.js",
-  "/api/tools/[id]/route": "app/api/tools/[id]/route.js",
-  "/page": "app/page.js"
+  "/recommendations/results/page": "app/recommendations/results/page.js"
 }

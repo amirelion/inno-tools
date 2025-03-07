@@ -100,6 +100,13 @@ async function generateImplementationGuidance(
     4. A timeline broken down by phases that accounts for their time constraints
     5. A list of expected outcomes they can anticipate
     
+    FORMAT INSTRUCTIONS:
+    - Use markdown formatting for the implementation guide
+    - Use headings (##, ###) to structure the content
+    - Use **bold** for emphasis on important points
+    - Use bullet points and numbered lists where appropriate
+    - Include clear section breaks
+    
     Format your response as valid JSON matching this structure:
     {
       "guide": "Comprehensive implementation guidance as string with markdown formatting",
@@ -115,7 +122,10 @@ async function generateImplementationGuidance(
     const response = await openai.chat.completions.create({
       model: model,
       messages: [
-        { role: "system", content: "You are an expert innovation consultant who provides detailed implementation guidance in JSON format." },
+        { 
+          role: "system", 
+          content: "You are an expert innovation consultant who provides detailed implementation guidance in JSON format. Use markdown formatting with headings, bold text, and lists in your guidance content." 
+        },
         { role: "user", content: prompt }
       ],
       temperature: 0.7,
@@ -152,20 +162,43 @@ This implementation guide has been tailored to your specific context. The ${tool
 - Adjusted for ${userContext.experienceLevel || 'your experience level'}
 - Contextualized for the ${userContext.industry || 'your industry'} industry
 
+### Getting Started
+
+**First steps** are crucial for success with ${tool.name}. Make sure to:
+1. Schedule a kickoff meeting with all stakeholders
+2. Set clear expectations and roles
+3. Prepare all necessary materials in advance
+
+## Implementation Process
+
+The implementation process consists of several phases:
+
+### Preparation Phase
+Before diving into the core activities, it's important to **establish a solid foundation**. This includes:
+* Gathering relevant data
+* Setting up the workspace
+* Briefing your team
+
+### Execution Phase
+This is where the main work happens. Focus on:
+- Following the structured process
+- Encouraging participation from all team members
+- Documenting insights as you go
+
 NOTE: This is MOCK GUIDANCE. To get actual AI-powered implementation guidance, please configure a valid OpenAI API key in your .env.local file.`,
 
     customSteps: [
-      `[MOCK DATA] Define your specific objectives related to "${userContext.goal}"`,
+      `[MOCK DATA] **Define your specific objectives** related to "${userContext.goal}"`,
       `[MOCK DATA] Prepare your team with necessary context and background`,
       `[MOCK DATA] Execute a simplified version of ${tool.name}`,
-      `[MOCK DATA] Capture and analyze outputs`,
+      `[MOCK DATA] **Capture and analyze outputs**`,
       `[MOCK DATA] Implement findings into your current workflows`
     ],
     
     materials: [
       ...(tool.materials || []).slice(0, 3).map(material => `[MOCK DATA] ${material}`),
       `[MOCK DATA] Documentation templates for ${userContext.goal}`,
-      `[MOCK DATA] Customized worksheets for your team's needs`
+      `[MOCK DATA] **Customized worksheets** for your team's needs`
     ],
     
     timeline: `[MOCK DATA] ## Suggested Timeline
@@ -179,12 +212,12 @@ NOTE: This is MOCK GUIDANCE. To get actual AI-powered implementation guidance, p
 - Days 4-5: Analyze initial outputs
 
 ### Week 3: Integration
-- Days 1-3: Refine findings
+- Days 1-3: **Refine findings**
 - Days 4-5: Integrate into existing processes`,
     
     expectedOutcomes: [
       `[MOCK DATA] Clear insights related to "${userContext.goal}"`,
-      `[MOCK DATA] A set of actionable next steps for implementation`,
+      `[MOCK DATA] A set of **actionable next steps** for implementation`,
       `[MOCK DATA] Team alignment on key priorities`,
       `[MOCK DATA] Documented process for future reference`
     ],

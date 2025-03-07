@@ -25,6 +25,28 @@ import { CheckCircle, Info as InfoIcon, ArrowBack, Download } from '@mui/icons-m
 import Link from 'next/link';
 import { useRecommendationsStore } from '@/lib/store';
 import { jsPDF } from 'jspdf';
+import ReactMarkdown from 'react-markdown';
+
+// Custom styles for markdown rendering
+const markdownStyles = {
+  p: {
+    marginBottom: '0.75rem',
+  },
+  ul: {
+    marginBottom: '1rem',
+    paddingLeft: '1.5rem',
+  },
+  ol: {
+    marginBottom: '1rem',
+    paddingLeft: '1.5rem',
+  },
+  li: {
+    marginBottom: '0.25rem',
+  },
+  strong: {
+    fontWeight: 'bold',
+  },
+};
 
 export default function RecommendationsResultsPage() {
   const router = useRouter();
@@ -164,9 +186,19 @@ export default function RecommendationsResultsPage() {
         <Typography variant="h6" gutterBottom>
           Summary
         </Typography>
-        <Typography variant="body1">
-          {recommendations.summary}
-        </Typography>
+        <Box sx={{ mt: 2 }}>
+          <ReactMarkdown
+            components={{
+              p: ({node, ...props}) => <Typography variant="body1" paragraph style={markdownStyles.p} {...props} />,
+              ul: ({node, ...props}) => <Box component="ul" style={markdownStyles.ul} {...props} />,
+              ol: ({node, ...props}) => <Box component="ol" style={markdownStyles.ol} {...props} />,
+              li: ({node, ...props}) => <Box component="li" style={markdownStyles.li} {...props} />,
+              strong: ({node, ...props}) => <Box component="strong" style={markdownStyles.strong} {...props} />,
+            }}
+          >
+            {recommendations.summary}
+          </ReactMarkdown>
+        </Box>
       </Paper>
 
       <Typography variant="h5" gutterBottom sx={{ mt: 6, mb: 3 }}>
@@ -196,18 +228,38 @@ export default function RecommendationsResultsPage() {
             <Typography variant="subtitle2" gutterBottom>
               Why this is recommended:
             </Typography>
-            <Typography variant="body2" paragraph>
-              {recommendation.reasoning}
-            </Typography>
+            <Box sx={{ mb: 2 }}>
+              <ReactMarkdown
+                components={{
+                  p: ({node, ...props}) => <Typography variant="body2" paragraph style={markdownStyles.p} {...props} />,
+                  ul: ({node, ...props}) => <Box component="ul" style={markdownStyles.ul} {...props} />,
+                  ol: ({node, ...props}) => <Box component="ol" style={markdownStyles.ol} {...props} />,
+                  li: ({node, ...props}) => <Box component="li" style={markdownStyles.li} {...props} />,
+                  strong: ({node, ...props}) => <Box component="strong" style={markdownStyles.strong} {...props} />,
+                }}
+              >
+                {recommendation.reasoning}
+              </ReactMarkdown>
+            </Box>
             
             {recommendation.implementationGuide && (
               <>
                 <Typography variant="subtitle2" gutterBottom>
                   Implementation Guide:
                 </Typography>
-                <Typography variant="body2" paragraph>
-                  {recommendation.implementationGuide}
-                </Typography>
+                <Box sx={{ mb: 2 }}>
+                  <ReactMarkdown
+                    components={{
+                      p: ({node, ...props}) => <Typography variant="body2" paragraph style={markdownStyles.p} {...props} />,
+                      ul: ({node, ...props}) => <Box component="ul" style={markdownStyles.ul} {...props} />,
+                      ol: ({node, ...props}) => <Box component="ol" style={markdownStyles.ol} {...props} />,
+                      li: ({node, ...props}) => <Box component="li" style={markdownStyles.li} {...props} />,
+                      strong: ({node, ...props}) => <Box component="strong" style={markdownStyles.strong} {...props} />,
+                    }}
+                  >
+                    {recommendation.implementationGuide}
+                  </ReactMarkdown>
+                </Box>
               </>
             )}
             

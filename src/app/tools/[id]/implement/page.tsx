@@ -37,10 +37,56 @@ import Link from 'next/link';
 import { InnovationTool, UserContext, ImplementationResponse } from '@/types';
 import { jsPDF } from 'jspdf';
 import { useRouter } from 'next/navigation';
+import ReactMarkdown from 'react-markdown';
 
 const experienceLevels = ['Beginner', 'Intermediate', 'Advanced'];
 const teamSizes = ['1-3 people', '4-10 people', '11-20 people', '21+ people'];
 const timeFrames = ['Less than a week', '1-2 weeks', '1 month', '2-3 months', '3+ months'];
+
+// Custom styles for markdown rendering
+const markdownStyles = {
+  h1: {
+    fontSize: '2rem',
+    fontWeight: 600,
+    marginTop: '1rem',
+    marginBottom: '0.5rem',
+  },
+  h2: {
+    fontSize: '1.75rem',
+    fontWeight: 600,
+    marginTop: '1rem',
+    marginBottom: '0.5rem',
+  },
+  h3: {
+    fontSize: '1.5rem',
+    fontWeight: 600,
+    marginTop: '0.75rem',
+    marginBottom: '0.5rem',
+  },
+  h4: {
+    fontSize: '1.25rem',
+    fontWeight: 600,
+    marginTop: '0.75rem',
+    marginBottom: '0.5rem',
+  },
+  p: {
+    marginBottom: '0.75rem',
+  },
+  ul: {
+    marginBottom: '1rem',
+    paddingLeft: '1.5rem',
+  },
+  ol: {
+    marginBottom: '1rem',
+    paddingLeft: '1.5rem',
+  },
+  li: {
+    marginBottom: '0.25rem',
+  },
+  strong: {
+    fontWeight: 'bold',
+  },
+};
 
 export default function ImplementationPage({ params }: { params: { id: string } }) {
   const router = useRouter();
@@ -342,9 +388,23 @@ export default function ImplementationPage({ params }: { params: { id: string } 
             <Typography variant="h6" gutterBottom>
               Implementation Guide
             </Typography>
-            <Typography variant="body1" sx={{ whiteSpace: 'pre-line' }}>
-              {implementation.guide}
-            </Typography>
+            <Box sx={{ mt: 2 }}>
+              <ReactMarkdown
+                components={{
+                  h1: ({node, ...props}) => <Typography variant="h4" gutterBottom style={markdownStyles.h1} {...props} />,
+                  h2: ({node, ...props}) => <Typography variant="h5" gutterBottom style={markdownStyles.h2} {...props} />,
+                  h3: ({node, ...props}) => <Typography variant="h6" gutterBottom style={markdownStyles.h3} {...props} />,
+                  h4: ({node, ...props}) => <Typography variant="subtitle1" gutterBottom style={markdownStyles.h4} {...props} />,
+                  p: ({node, ...props}) => <Typography variant="body1" paragraph style={markdownStyles.p} {...props} />,
+                  ul: ({node, ...props}) => <Box component="ul" style={markdownStyles.ul} {...props} />,
+                  ol: ({node, ...props}) => <Box component="ol" style={markdownStyles.ol} {...props} />,
+                  li: ({node, ...props}) => <Box component="li" style={markdownStyles.li} {...props} />,
+                  strong: ({node, ...props}) => <Box component="strong" style={markdownStyles.strong} {...props} />,
+                }}
+              >
+                {implementation.guide}
+              </ReactMarkdown>
+            </Box>
           </Paper>
           
           <Grid container spacing={4}>
@@ -360,7 +420,18 @@ export default function ImplementationPage({ params }: { params: { id: string } 
                         <ListItemIcon sx={{ minWidth: 40 }}>
                           <CheckCircle color="primary" />
                         </ListItemIcon>
-                        <ListItemText primary={step} />
+                        <ListItemText 
+                          primary={
+                            <ReactMarkdown
+                              components={{
+                                p: ({node, ...props}) => <Typography variant="body1" {...props} />,
+                                strong: ({node, ...props}) => <Box component="strong" style={markdownStyles.strong} {...props} />,
+                              }}
+                            >
+                              {step}
+                            </ReactMarkdown>
+                          }
+                        />
                       </ListItem>
                     ))}
                   </List>
@@ -380,7 +451,18 @@ export default function ImplementationPage({ params }: { params: { id: string } 
                         <ListItemIcon sx={{ minWidth: 40 }}>
                           <CheckCircle color="primary" />
                         </ListItemIcon>
-                        <ListItemText primary={material} />
+                        <ListItemText 
+                          primary={
+                            <ReactMarkdown
+                              components={{
+                                p: ({node, ...props}) => <Typography variant="body1" {...props} />,
+                                strong: ({node, ...props}) => <Box component="strong" style={markdownStyles.strong} {...props} />,
+                              }}
+                            >
+                              {material}
+                            </ReactMarkdown>
+                          }
+                        />
                       </ListItem>
                     ))}
                   </List>
@@ -393,9 +475,23 @@ export default function ImplementationPage({ params }: { params: { id: string } 
             <Typography variant="h6" gutterBottom>
               Timeline
             </Typography>
-            <Typography variant="body1" sx={{ whiteSpace: 'pre-line' }}>
-              {implementation.timeline}
-            </Typography>
+            <Box sx={{ mt: 2 }}>
+              <ReactMarkdown
+                components={{
+                  h1: ({node, ...props}) => <Typography variant="h4" gutterBottom style={markdownStyles.h1} {...props} />,
+                  h2: ({node, ...props}) => <Typography variant="h5" gutterBottom style={markdownStyles.h2} {...props} />,
+                  h3: ({node, ...props}) => <Typography variant="h6" gutterBottom style={markdownStyles.h3} {...props} />,
+                  h4: ({node, ...props}) => <Typography variant="subtitle1" gutterBottom style={markdownStyles.h4} {...props} />,
+                  p: ({node, ...props}) => <Typography variant="body1" paragraph style={markdownStyles.p} {...props} />,
+                  ul: ({node, ...props}) => <Box component="ul" style={markdownStyles.ul} {...props} />,
+                  ol: ({node, ...props}) => <Box component="ol" style={markdownStyles.ol} {...props} />,
+                  li: ({node, ...props}) => <Box component="li" style={markdownStyles.li} {...props} />,
+                  strong: ({node, ...props}) => <Box component="strong" style={markdownStyles.strong} {...props} />,
+                }}
+              >
+                {implementation.timeline}
+              </ReactMarkdown>
+            </Box>
           </Paper>
           
           <Paper elevation={2} sx={{ p: 3, mb: 4 }}>
@@ -408,7 +504,18 @@ export default function ImplementationPage({ params }: { params: { id: string } 
                   <ListItemIcon sx={{ minWidth: 40 }}>
                     <CheckCircle color="primary" />
                   </ListItemIcon>
-                  <ListItemText primary={outcome} />
+                  <ListItemText 
+                    primary={
+                      <ReactMarkdown
+                        components={{
+                          p: ({node, ...props}) => <Typography variant="body1" {...props} />,
+                          strong: ({node, ...props}) => <Box component="strong" style={markdownStyles.strong} {...props} />,
+                        }}
+                      >
+                        {outcome}
+                      </ReactMarkdown>
+                    }
+                  />
                 </ListItem>
               ))}
             </List>
