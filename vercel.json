@@ -1,17 +1,7 @@
 {
   "version": 2,
-  "buildCommand": "npm install --save-dev typescript && npm run build",
-  "outputDirectory": ".next",
-  "devCommand": "npm run dev",
-  "installCommand": "npm install",
-  "regions": ["iad1"],
   "framework": "nextjs",
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
-    }
-  ],
+  "regions": ["iad1"],
   "functions": {
     "src/app/api/**": {
       "memory": 1024
