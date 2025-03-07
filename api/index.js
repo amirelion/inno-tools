@@ -1,13 +1,13 @@
 const path = require('path');
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const { createServer } = require('http');
 const { json } = require('body-parser');
+const fs = require('fs');
 
-// Import your routes
-const toolRoutes = require('../server/dist/routes/tools').default;
-const recommendationRoutes = require('../server/dist/routes/recommendations').default;
+// Import server routes
+const toolsRoutePath = path.join(__dirname, 'dist/routes/tools.js');
+const recommendationsRoutePath = path.join(__dirname, 'dist/routes/recommendations.js');
 
 // Create and configure express app
 const app = express();
@@ -17,12 +17,22 @@ app.use(json());
 // Log environment variables (for debugging)
 console.log('Environment variables loaded:');
 console.log('OPENAI_API_KEY exists:', !!process.env.OPENAI_API_KEY);
-console.log('OPENAI_API_KEY first 5 chars:', process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY.substring(0, 5) + '...' : 'not set');
 console.log('NODE_ENV:', process.env.NODE_ENV);
 
-// Mount your routes
-app.use('/api/tools', toolRoutes);
-app.use('/api/recommendations', recommendationRoutes);
+// Mount API routes if available
+try {
+  if (fs.existsSync(toolsRoutePath)) {
+    const toolRoutes = require(toolsRoutePath).default;
+    app.use('/api/tools', toolRoutes);
+  }
+  
+  if (fs.existsSync(recommendationsRoutePath)) {
+    const recommendationRoutes = require(recommendationsRoutePath).default;
+    app.use('/api/recommendations', recommendationRoutes);
+  }
+} catch (error) {
+  console.error('Error loading routes:', error);
+}
 
 // Health check endpoint
 app.get('/api', (req, res) => {
@@ -35,16 +45,5 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Something went wrong!' });
 });
 
-// Create server
-const server = createServer(app);
-
-// For local development
-if (process.env.NODE_ENV !== 'production') {
-  const PORT = process.env.PORT || 5001;
-  server.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
-}
-
-// Export for Vercel
+// Export as a serverless function
 module.exports = app; 
