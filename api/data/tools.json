@@ -1,0 +1,136 @@
+[
+  {
+    "id": "scamper",
+    "name": "SCAMPER",
+    "description": "A creative thinking technique that uses a set of directed questions to help generate new ideas or improve existing ones.",
+    "duration": { "min": 30, "max": 60 },
+    "complexity": "medium",
+    "participantCount": { "min": 1, "max": 15 },
+    "purpose": ["ideation", "problem-solving"],
+    "industry": ["all"],
+    "steps": [
+      { "order": 1, "title": "Select subject", "description": "Choose a product, service or process to improve" },
+      { "order": 2, "title": "Apply SCAMPER questions", "description": "Use each letter of SCAMPER as a prompt for brainstorming: Substitute, Combine, Adapt, Modify, Put to other uses, Eliminate, Reverse" },
+      { "order": 3, "title": "Record ideas", "description": "Document all ideas generated" },
+      { "order": 4, "title": "Evaluate and refine", "description": "Review, combine and improve promising ideas" }
+    ],
+    "materials": ["sticky notes", "markers", "whiteboard"],
+    "tips": [
+      "Encourage wild ideas during the process",
+      "Focus on quantity over quality initially",
+      "Avoid criticism during ideation phase"
+    ],
+    "references": [
+      { "title": "SCAMPER Technique", "url": "https://www.mindtools.com/pages/article/newCT_02.htm" }
+    ]
+  },
+  {
+    "id": "customer-journey-map",
+    "name": "Customer Journey Mapping",
+    "description": "A visualization technique that maps out the story of a customer's experience with your product or service across all touchpoints.",
+    "duration": { "min": 120, "max": 240 },
+    "complexity": "high",
+    "participantCount": { "min": 3, "max": 10 },
+    "purpose": ["analysis", "customer-understanding"],
+    "industry": ["all", "retail", "service"],
+    "steps": [
+      { "order": 1, "title": "Define scope and personas", "description": "Identify which customer journey to map and create relevant personas" },
+      { "order": 2, "title": "List touchpoints", "description": "Identify all interactions between customer and organization" },
+      { "order": 3, "title": "Map current journey", "description": "Plot the current journey with actions, emotions, and pain points" },
+      { "order": 4, "title": "Analyze and identify opportunities", "description": "Look for pain points and areas for improvement" },
+      { "order": 5, "title": "Design improved journey", "description": "Create an improved future state customer journey" }
+    ],
+    "materials": ["large paper sheets", "sticky notes", "markers", "persona templates"],
+    "tips": [
+      "Use real customer data when possible",
+      "Include customer emotions at each stage",
+      "Involve cross-functional team members"
+    ],
+    "references": [
+      { "title": "How to Create a Customer Journey Map", "url": "https://www.nngroup.com/articles/customer-journey-mapping/" }
+    ]
+  },
+  {
+    "id": "value-proposition-canvas",
+    "name": "Value Proposition Canvas",
+    "description": "A framework to ensure a product or service is positioned around what the customer values and needs.",
+    "duration": { "min": 60, "max": 120 },
+    "complexity": "medium",
+    "participantCount": { "min": 2, "max": 8 },
+    "purpose": ["business-model", "product-development"],
+    "industry": ["all", "startups", "product"],
+    "steps": [
+      { "order": 1, "title": "Define customer segment", "description": "Identify the specific customer segment you're creating value for" },
+      { "order": 2, "title": "Map customer profile", "description": "Document customer jobs, pains, and gains" },
+      { "order": 3, "title": "Create value map", "description": "Define your products/services, pain relievers, and gain creators" },
+      { "order": 4, "title": "Achieve fit", "description": "Analyze how your value map addresses the customer profile" },
+      { "order": 5, "title": "Refine and iterate", "description": "Adjust your value proposition based on the analysis" }
+    ],
+    "materials": ["value proposition canvas template", "sticky notes", "markers"],
+    "tips": [
+      "Focus on one customer segment at a time",
+      "Be specific about customer jobs, pains, and gains",
+      "Prioritize the most important elements",
+      "Test your assumptions with real customers"
+    ],
+    "references": [
+      { "title": "Value Proposition Design", "url": "https://www.strategyzer.com/books/value-proposition-design" }
+    ]
+  },
+  {
+    "id": "design-sprint",
+    "name": "Design Sprint",
+    "description": "A five-day process for solving problems and testing new ideas through design, prototyping, and testing with customers.",
+    "duration": { "min": 1800, "max": 2400 },
+    "complexity": "high",
+    "participantCount": { "min": 4, "max": 7 },
+    "purpose": ["problem-solving", "product-development", "innovation"],
+    "industry": ["all", "tech", "product"],
+    "steps": [
+      { "order": 1, "title": "Understand", "description": "Map out the problem and pick an important area to focus on" },
+      { "order": 2, "title": "Diverge", "description": "Sketch competing solutions on paper" },
+      { "order": 3, "title": "Decide", "description": "Make decisions and turn ideas into a testable hypothesis" },
+      { "order": 4, "title": "Prototype", "description": "Build a realistic prototype" },
+      { "order": 5, "title": "Validate", "description": "Test with real users" }
+    ],
+    "materials": ["whiteboard", "sticky notes", "markers", "timer", "prototyping tools"],
+    "tips": [
+      "Block all five days with no interruptions",
+      "Include diverse perspectives in your team",
+      "Appoint a dedicated facilitator",
+      "Focus on a specific, important challenge",
+      "Build just enough of a prototype to test"
+    ],
+    "references": [
+      { "title": "The Design Sprint", "url": "https://www.gv.com/sprint/" }
+    ]
+  },
+  {
+    "id": "empathy-map",
+    "name": "Empathy Mapping",
+    "description": "A collaborative visualization used to articulate what we know about a particular type of user.",
+    "duration": { "min": 45, "max": 90 },
+    "complexity": "low",
+    "participantCount": { "min": 2, "max": 8 },
+    "purpose": ["user-research", "customer-understanding"],
+    "industry": ["all"],
+    "steps": [
+      { "order": 1, "title": "Define user", "description": "Identify the user or persona for the empathy map" },
+      { "order": 2, "title": "Map what they say", "description": "Document what the user says out loud in interviews or public settings" },
+      { "order": 3, "title": "Map what they think", "description": "Capture what the user might be thinking but not explicitly saying" },
+      { "order": 4, "title": "Map what they do", "description": "Note the actions and behaviors the user takes" },
+      { "order": 5, "title": "Map what they feel", "description": "Document the user's emotional state or what they might be feeling" },
+      { "order": 6, "title": "Identify pain points and gains", "description": "Summarize the user's challenges and desires" }
+    ],
+    "materials": ["empathy map template", "sticky notes", "markers"],
+    "tips": [
+      "Use real user research when possible",
+      "Be specific rather than general",
+      "Focus on one user type at a time",
+      "Update the map as you learn more"
+    ],
+    "references": [
+      { "title": "Empathy Map - Why and How to Use It", "url": "https://www.nngroup.com/articles/empathy-mapping/" }
+    ]
+  }
+] 
