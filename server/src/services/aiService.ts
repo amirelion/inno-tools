@@ -4,10 +4,12 @@ import { InnovationTool, UserContext, ToolRecommendation, ImplementationGuidance
 // Initialize OpenAI client with a fallback for development
 let openai: OpenAI | null = null;
 try {
-  // Combine the API key parts from the .env file
-  const apiKeyPart1 = "sk-proj-tot34ZdBTqyXV_GZCrPSUOLvX39uXnY04KOIVFbQZtHA_hA5_KHb-TVGZNX5118bbER2xK7tQ0T3BlbkFJUwv";
-  const apiKeyPart2 = "48IuPtcn3os24gKzr5m-T7TDdLn3VZDcZ0PAheE7aTObUjcOtAooCvd_oIMkb3ltWsS8rsA";
-  const apiKey = apiKeyPart1 + apiKeyPart2;
+  // Use the API key from environment variable
+  const apiKey = process.env.OPENAI_API_KEY;
+  
+  if (!apiKey) {
+    throw new Error('OPENAI_API_KEY environment variable is not set');
+  }
   
   openai = new OpenAI({
     apiKey: apiKey,
