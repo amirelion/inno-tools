@@ -3,12 +3,14 @@ set -e  # Exit immediately if a command exits with a non-zero status
 
 echo "Starting build process for Vercel deployment..."
 
-# Create a temporary client directory if submodule isn't available
-if [ ! -d "client" ] || [ ! -f "client/package.json" ]; then
-  echo "Client directory is not available, creating a minimal React app..."
+# Check if this is a genuine client directory with our components
+if [ -d "client/src/components" ] && [ -f "client/src/components/ToolList.tsx" ]; then
+  echo "Found proper client code - skipping fallback creation"
+else
+  echo "Client directory components not found, creating a minimal React app..."
   
   # Create a minimal client directory
-  mkdir -p client/public client/src
+  mkdir -p client/public client/src/components
   
   # Create package.json with build script
   cat > client/package.json << 'EOF'
@@ -101,6 +103,10 @@ cd ..
 # Build the frontend
 echo "Building the frontend client..."
 cd client
+echo "Current client directory contents:"
+ls -la
+echo "Components directory contents:"
+ls -la src/components || echo "No components directory found"
 npm install
 npm run build
 cd ..

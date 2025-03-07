@@ -1,121 +1,92 @@
-# InnoTools - Innovation Tools Recommendation Application
+# InnoTools - Innovation Tools Recommendation Platform
 
-InnoTools is a web application that helps innovation managers, practitioners, and facilitators discover and utilize the right innovation tools for their specific needs. The application leverages AI to provide personalized recommendations and guidance on implementing innovation methodologies.
+InnoTools is a web application that helps teams and organizations find the right innovation tools and methodologies for their specific needs. The platform provides a curated catalog of innovation tools, personalized recommendations based on project context, and detailed implementation guidance.
 
 ## Features
 
-- **Tool Catalog**: Browse and filter a collection of innovation tools and methodologies
-- **AI-Powered Recommendations**: Get personalized tool suggestions based on your context
-- **Detailed Tool Information**: View comprehensive information about each tool
-- **Customized Implementation Guidance**: Receive AI-generated guidance tailored to your specific situation
-- **Document Generation**: Download PDF or Word documents with customized instructions
-
-## Project Structure
-
-The project consists of two main parts:
-
-- **Client**: React frontend application
-- **Server**: Node.js backend API
+- **Tool Catalog**: Browse a curated collection of innovation tools and methodologies
+- **Personalized Recommendations**: Get tool recommendations based on your project's specific context
+- **Implementation Guidance**: Receive detailed, context-specific guidance on how to implement recommended tools
+- **Export Functionality**: Export recommendations and implementation guides as PDF documents
 
 ## Tech Stack
 
-### Frontend
-- React with TypeScript
-- Material UI for components
-- React Router for navigation
-- React Hook Form for form handling
-- Axios for API requests
-
-### Backend
-- Node.js with Express
-- TypeScript
-- OpenAI API integration
-- PDF and Word document generation
+- **Frontend**: Next.js, React, Material UI
+- **Backend**: Next.js API Routes (serverless)
+- **AI Integration**: OpenAI API for generating personalized recommendations and implementation guidance
+- **Deployment**: Vercel
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js (v14 or higher)
-- npm (v6 or higher)
+- Node.js 18.x or later
+- npm or yarn
 - OpenAI API key
 
-### Installation and Setup
+### Installation
 
-1. Clone the repository
-2. Set up the backend:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/inno-tools.git
+   cd inno-tools
    ```
-   cd server
-   npm install
-   cp .env.example .env
-   ```
-   Edit the `.env` file to add your OpenAI API key.
 
-3. Set up the frontend:
-   ```
-   cd client
+2. Install dependencies:
+   ```bash
    npm install
    ```
 
-### Running the Application
-
-1. Start the backend server:
+3. Create a `.env.local` file in the root directory and add your OpenAI API key:
    ```
-   cd server
+   OPENAI_API_KEY=your_api_key_here
+   ```
+
+4. Start the development server:
+   ```bash
    npm run dev
    ```
 
-2. Start the frontend development server:
-   ```
-   cd client
-   npm start
-   ```
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-3. Open your browser and navigate to `http://localhost:3000`
+## Deployment
 
-## Usage
+The application is configured for easy deployment on Vercel:
 
-### Browsing Tools
+1. Push your code to a GitHub repository
+2. Connect the repository to Vercel
+3. Configure the environment variables in the Vercel dashboard
+4. Deploy
 
-Navigate to the "Browse Tools" section to see all available innovation tools. Use the filters to narrow down the tools based on:
-- Complexity
-- Duration
-- Participant count
-- Purpose
-- Industry
+## Project Structure
 
-### Getting Recommendations
-
-1. Go to the "Get Recommendations" section
-2. Follow the multi-step form to provide information about:
-   - Your goal/purpose
-   - Available time
-   - Participant information
-   - Context (industry, problem domain)
-3. View the recommended tools with confidence scores and justifications
-
-### Viewing Tool Details
-
-Click on any tool to view detailed information, including:
-- Description
-- Implementation steps
-- Materials needed
-- Tips and best practices
-- References
-
-### Generating Documents
-
-From the tool detail page:
-1. Fill in the implementation guidance form with your specific context
-2. Click "Generate PDF" or "Generate Word Doc"
-3. Download and save the customized document
+```
+/inno-tools/
+  /src
+    /app             # Next.js app directory
+      /api           # API routes (serverless functions)
+      /tools         # Tool catalog and details pages
+      /recommendations # Recommendation pages
+    /components      # Reusable UI components
+    /hooks           # Custom React hooks
+    /lib             # Shared utilities
+      /openai.ts     # OpenAI client setup
+    /data            # Static data files
+      /tools.json    # Innovation tool definitions
+    /types           # TypeScript type definitions
+    /styles          # CSS or styled-component styles
+  /public            # Static assets
+  next.config.js     # Next.js configuration
+  tsconfig.json      # TypeScript configuration
+  .env.local         # Local environment variables (not committed)
+  .env.example       # Example environment variables (committed)
+```
 
 ## License
 
-[MIT License](LICENSE)
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Acknowledgements
+## Acknowledgments
 
 - OpenAI for providing the AI capabilities
-- Material UI for the component library
-- All the innovation methodologies included in the tool catalog 
+- The innovation community for the methodologies and tools featured in the application 

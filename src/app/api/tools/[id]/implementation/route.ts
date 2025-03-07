@@ -1,0 +1,194 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { InnovationTool, UserContext, ImplementationResponse } from '@/types';
+import tools from '@/data/tools.json';
+import { openai, usingMockData } from '@/lib/openai';
+
+// API route to generate implementation guidance for a specific tool
+export async function POST(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    // Get the tool by ID
+    const tool = (tools as InnovationTool[]).find(t => t.id === params.id);
+    
+    if (!tool) {
+      return NextResponse.json(
+        { error: `Tool with ID ${params.id} not found` },
+        { status: 404 }
+      );
+    }
+    
+    // Get user context from request body
+    const userContext = await request.json() as UserContext;
+    
+    if (!userContext.goal) {
+      return NextResponse.json(
+        { error: 'Goal is required in the user context' },
+        { status: 400 }
+      );
+    }
+    
+    // Generate implementation guidance
+    let implementationGuidance: ImplementationResponse;
+    
+    if (openai && !usingMockData) {
+      try {
+        implementationGuidance = await generateImplementationGuidance(tool, userContext);
+      } catch (error) {
+        console.error('Error calling OpenAI:', error);
+        return NextResponse.json(
+          { error: 'Failed to generate implementation guidance. Using mock data as fallback.', usingMockData: true },
+          { status: 500 }
+        );
+      }
+    } else {
+      console.log('Using mock data for implementation guidance (OpenAI API not configured)');
+      implementationGuidance = generateMockImplementation(tool, userContext);
+    }
+    
+    return NextResponse.json({
+      ...implementationGuidance,
+      usingMockData: !openai || usingMockData
+    });
+  } catch (error) {
+    console.error('Error in implementation guidance API:', error);
+    return NextResponse.json(
+      { error: 'Failed to process implementation guidance request' },
+      { status: 500 }
+    );
+  }
+}
+
+async function generateImplementationGuidance(
+  tool: InnovationTool,
+  userContext: UserContext
+): Promise<ImplementationResponse> {
+  if (!openai) {
+    throw new Error('OpenAI client not initialized');
+  }
+
+  // Construct a prompt for the OpenAI API
+  const prompt = `
+    You are an expert innovation consultant who helps teams implement innovation methodologies effectively.
+    I need detailed implementation guidance for using the "${tool.name}" innovation tool in the following context:
+    
+    USER CONTEXT:
+    Goal: ${userContext.goal}
+    Team Size: ${userContext.teamSize || 'Not specified'}
+    Time Available: ${userContext.timeAvailable || 'Not specified'}
+    Experience Level: ${userContext.experienceLevel || 'Not specified'}
+    Industry: ${userContext.industry || 'Not specified'}
+    Budget Constraints: ${userContext.budget || 'Not specified'}
+    Additional Context: ${userContext.additionalContext || 'None provided'}
+    
+    TOOL INFORMATION:
+    Name: ${tool.name}
+    Description: ${tool.description}
+    Category: ${tool.category}
+    Standard Steps: ${tool.steps.join('\n')}
+    Standard Materials: ${tool.materials.join(', ')}
+    Difficulty: ${tool.difficulty}
+    Standard Time Required: ${tool.timeRequired}
+    Standard Team Size: ${tool.teamSize}
+    Tips: ${tool.tips.join('\n')}
+    
+    Please provide:
+    1. A comprehensive implementation guide tailored to their specific context and goal
+    2. A list of customized steps for their particular situation
+    3. A list of specific materials they will need
+    4. A timeline broken down by phases that accounts for their time constraints
+    5. A list of expected outcomes they can anticipate
+    
+    Format your response as valid JSON matching this structure:
+    {
+      "guide": "Comprehensive implementation guidance as string with markdown formatting",
+      "customSteps": ["Step 1", "Step 2", "Step 3", ...],
+      "materials": ["Material 1", "Material 2", "Material 3", ...],
+      "timeline": "Detailed timeline as string with markdown formatting",
+      "expectedOutcomes": ["Outcome 1", "Outcome 2", "Outcome 3", ...]
+    }
+  `;
+
+  try {
+    const model = process.env.OPENAI_MODEL || 'gpt-4o';
+    const response = await openai.chat.completions.create({
+      model: model,
+      messages: [
+        { role: "system", content: "You are an expert innovation consultant who provides detailed implementation guidance in JSON format." },
+        { role: "user", content: prompt }
+      ],
+      temperature: 0.7,
+      max_tokens: 2000,
+      response_format: { type: "json_object" }
+    });
+    
+    // Parse the response
+    const content = response.choices[0]?.message?.content || '';
+    const guidance = JSON.parse(content) as ImplementationResponse;
+    
+    // Additional validation could go here
+    return guidance;
+  } catch (error) {
+    console.error('Error generating implementation guidance:', error);
+    throw error;
+  }
+}
+
+function generateMockImplementation(
+  tool: InnovationTool,
+  userContext: UserContext
+): ImplementationResponse {
+  return {
+    guide: `[MOCK DATA] # Implementation Guide for ${tool.name}
+
+## Customized for: ${userContext.goal}
+
+This implementation guide has been tailored to your specific context. The ${tool.name} methodology will help you achieve your goal by providing a structured approach to innovation.
+
+### Key Considerations
+- Adapted for a team size of ${userContext.teamSize || 'your team'}
+- Modified to fit within ${userContext.timeAvailable || 'your available time'}
+- Adjusted for ${userContext.experienceLevel || 'your experience level'}
+- Contextualized for the ${userContext.industry || 'your industry'} industry
+
+NOTE: This is MOCK GUIDANCE. To get actual AI-powered implementation guidance, please configure a valid OpenAI API key in your .env.local file.`,
+
+    customSteps: [
+      `[MOCK DATA] Define your specific objectives related to "${userContext.goal}"`,
+      `[MOCK DATA] Prepare your team with necessary context and background`,
+      `[MOCK DATA] Execute a simplified version of ${tool.name}`,
+      `[MOCK DATA] Capture and analyze outputs`,
+      `[MOCK DATA] Implement findings into your current workflows`
+    ],
+    
+    materials: [
+      ...(tool.materials || []).slice(0, 3).map(material => `[MOCK DATA] ${material}`),
+      `[MOCK DATA] Documentation templates for ${userContext.goal}`,
+      `[MOCK DATA] Customized worksheets for your team's needs`
+    ],
+    
+    timeline: `[MOCK DATA] ## Suggested Timeline
+
+### Week 1: Preparation
+- Days 1-2: Team orientation and background research
+- Days 3-5: Setup and material preparation
+
+### Week 2: Implementation
+- Days 1-3: Execute core activities
+- Days 4-5: Analyze initial outputs
+
+### Week 3: Integration
+- Days 1-3: Refine findings
+- Days 4-5: Integrate into existing processes`,
+    
+    expectedOutcomes: [
+      `[MOCK DATA] Clear insights related to "${userContext.goal}"`,
+      `[MOCK DATA] A set of actionable next steps for implementation`,
+      `[MOCK DATA] Team alignment on key priorities`,
+      `[MOCK DATA] Documented process for future reference`
+    ],
+    
+    usingMockData: true
+  };
+} 
