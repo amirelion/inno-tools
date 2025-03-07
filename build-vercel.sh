@@ -1,7 +1,9 @@
 #!/bin/bash
 set -e  # Exit immediately if a command exits with a non-zero status
 
-echo "Starting build process for Vercel deployment..."
+echo "Starting Next.js build for Vercel deployment..."
+npm run build
+echo "Next.js build completed"
 
 # Check if this is a genuine client directory with our components
 if [ -d "client/src/components" ] && [ -f "client/src/components/ToolList.tsx" ]; then

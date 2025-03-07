@@ -1,4 +1,8 @@
 {
   "/tools/[id]/implement/page": "app/tools/[id]/implement/page.js",
-  "/tools/page": "app/tools/page.js"
+  "/tools/page": "app/tools/page.js",
+  "/page": "app/page.js",
+  "/api/tools/route": "app/api/tools/route.js",
+  "/recommendations/page": "app/recommendations/page.js",
+  "/about/page": "app/about/page.js"
 }
