@@ -106,7 +106,7 @@ export default function ToolDetailPage({ params }: { params: { id: string } }) {
           />
         </Box>
         
-        <Typography variant="body1" paragraph>
+        <Typography component="div" variant="body1" paragraph>
           {tool.description}
         </Typography>
       </Box>

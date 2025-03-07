@@ -411,7 +411,7 @@ export default function ImplementationPage({ params }: { params: { id: string } 
                   h2: ({node, ...props}) => <Typography variant="h5" gutterBottom style={markdownStyles.h2} {...props} />,
                   h3: ({node, ...props}) => <Typography variant="h6" gutterBottom style={markdownStyles.h3} {...props} />,
                   h4: ({node, ...props}) => <Typography variant="subtitle1" gutterBottom style={markdownStyles.h4} {...props} />,
-                  p: ({node, ...props}) => <Typography variant="body1" paragraph style={markdownStyles.p} {...props} />,
+                  p: ({node, ...props}) => <Typography component="p" variant="body1" paragraph style={markdownStyles.p} {...props} />,
                   ul: ({node, ...props}) => <Box component="ul" style={markdownStyles.ul} {...props} />,
                   ol: ({node, ...props}) => <Box component="ol" style={markdownStyles.ol} {...props} />,
                   li: ({node, ...props}) => <Box component="li" style={markdownStyles.li} {...props} />,
@@ -440,7 +440,7 @@ export default function ImplementationPage({ params }: { params: { id: string } 
                           primary={
                             <ReactMarkdown
                               components={{
-                                p: ({node, ...props}) => <Typography variant="body1" {...props} />,
+                                p: ({node, ...props}) => <Typography component="p" variant="body1" {...props} />,
                                 strong: ({node, ...props}) => <Box component="strong" style={markdownStyles.strong} {...props} />,
                               }}
                             >
@@ -471,7 +471,7 @@ export default function ImplementationPage({ params }: { params: { id: string } 
                           primary={
                             <ReactMarkdown
                               components={{
-                                p: ({node, ...props}) => <Typography variant="body1" {...props} />,
+                                p: ({node, ...props}) => <Typography component="p" variant="body1" {...props} />,
                                 strong: ({node, ...props}) => <Box component="strong" style={markdownStyles.strong} {...props} />,
                               }}
                             >
@@ -498,7 +498,7 @@ export default function ImplementationPage({ params }: { params: { id: string } 
                   h2: ({node, ...props}) => <Typography variant="h5" gutterBottom style={markdownStyles.h2} {...props} />,
                   h3: ({node, ...props}) => <Typography variant="h6" gutterBottom style={markdownStyles.h3} {...props} />,
                   h4: ({node, ...props}) => <Typography variant="subtitle1" gutterBottom style={markdownStyles.h4} {...props} />,
-                  p: ({node, ...props}) => <Typography variant="body1" paragraph style={markdownStyles.p} {...props} />,
+                  p: ({node, ...props}) => <Typography component="p" variant="body1" paragraph style={markdownStyles.p} {...props} />,
                   ul: ({node, ...props}) => <Box component="ul" style={markdownStyles.ul} {...props} />,
                   ol: ({node, ...props}) => <Box component="ol" style={markdownStyles.ol} {...props} />,
                   li: ({node, ...props}) => <Box component="li" style={markdownStyles.li} {...props} />,
@@ -524,7 +524,7 @@ export default function ImplementationPage({ params }: { params: { id: string } 
                     primary={
                       <ReactMarkdown
                         components={{
-                          p: ({node, ...props}) => <Typography variant="body1" {...props} />,
+                          p: ({node, ...props}) => <Typography component="p" variant="body1" {...props} />,
                           strong: ({node, ...props}) => <Box component="strong" style={markdownStyles.strong} {...props} />,
                         }}
                       >

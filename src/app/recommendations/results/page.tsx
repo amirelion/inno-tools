@@ -189,7 +189,7 @@ export default function RecommendationsResultsPage() {
         <Box sx={{ mt: 2 }}>
           <ReactMarkdown
             components={{
-              p: ({node, ...props}) => <Typography variant="body1" paragraph style={markdownStyles.p} {...props} />,
+              p: ({node, ...props}) => <Typography component="p" variant="body1" paragraph style={markdownStyles.p} {...props} />,
               ul: ({node, ...props}) => <Box component="ul" style={markdownStyles.ul} {...props} />,
               ol: ({node, ...props}) => <Box component="ol" style={markdownStyles.ol} {...props} />,
               li: ({node, ...props}) => <Box component="li" style={markdownStyles.li} {...props} />,
@@ -231,7 +231,7 @@ export default function RecommendationsResultsPage() {
             <Box sx={{ mb: 2 }}>
               <ReactMarkdown
                 components={{
-                  p: ({node, ...props}) => <Typography variant="body2" paragraph style={markdownStyles.p} {...props} />,
+                  p: ({node, ...props}) => <Typography component="p" variant="body2" paragraph style={markdownStyles.p} {...props} />,
                   ul: ({node, ...props}) => <Box component="ul" style={markdownStyles.ul} {...props} />,
                   ol: ({node, ...props}) => <Box component="ol" style={markdownStyles.ol} {...props} />,
                   li: ({node, ...props}) => <Box component="li" style={markdownStyles.li} {...props} />,
@@ -250,7 +250,7 @@ export default function RecommendationsResultsPage() {
                 <Box sx={{ mb: 2 }}>
                   <ReactMarkdown
                     components={{
-                      p: ({node, ...props}) => <Typography variant="body2" paragraph style={markdownStyles.p} {...props} />,
+                      p: ({node, ...props}) => <Typography component="p" variant="body2" paragraph style={markdownStyles.p} {...props} />,
                       ul: ({node, ...props}) => <Box component="ul" style={markdownStyles.ul} {...props} />,
                       ol: ({node, ...props}) => <Box component="ol" style={markdownStyles.ol} {...props} />,
                       li: ({node, ...props}) => <Box component="li" style={markdownStyles.li} {...props} />,

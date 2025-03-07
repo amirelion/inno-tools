@@ -8,7 +8,7 @@ export default function AboutPage() {
         About InnoTools
       </Typography>
       
-      <Typography variant="body1" paragraph>
+      <Typography component="div" variant="body1" paragraph>
         InnoTools is a platform designed to help teams and organizations find the right innovation tools and methodologies for their specific needs. Our mission is to make innovation more accessible and effective by providing personalized recommendations and implementation guidance.
       </Typography>
       
@@ -16,7 +16,7 @@ export default function AboutPage() {
         <Typography variant="h4" gutterBottom>
           Our Mission
         </Typography>
-        <Typography variant="body1" paragraph>
+        <Typography component="div" variant="body1" paragraph>
           We believe that innovation is essential for organizations to thrive in today's rapidly changing world. However, navigating the vast landscape of innovation methodologies can be overwhelming. InnoTools aims to simplify this process by helping you find the right tools for your specific context and providing guidance on how to implement them effectively.
         </Typography>
       </Paper>
@@ -31,7 +31,7 @@ export default function AboutPage() {
             <Typography variant="h5" gutterBottom>
               1. Browse Tools
             </Typography>
-            <Typography variant="body1">
+            <Typography component="div" variant="body1">
               Explore our curated catalog of innovation tools and methodologies. Each tool includes detailed information about its purpose, benefits, implementation steps, and more.
             </Typography>
           </Paper>
@@ -42,7 +42,7 @@ export default function AboutPage() {
             <Typography variant="h5" gutterBottom>
               2. Get Recommendations
             </Typography>
-            <Typography variant="body1">
+            <Typography component="div" variant="body1">
               Tell us about your project, goals, and constraints, and our AI-powered system will recommend the most suitable innovation tools for your specific context.
             </Typography>
           </Paper>
@@ -53,7 +53,7 @@ export default function AboutPage() {
             <Typography variant="h5" gutterBottom>
               3. Implementation Guidance
             </Typography>
-            <Typography variant="body1">
+            <Typography component="div" variant="body1">
               Receive detailed, context-specific guidance on how to implement the recommended tools in your organization, including customized steps, materials, and timelines.
             </Typography>
           </Paper>
@@ -72,7 +72,7 @@ export default function AboutPage() {
             <Typography variant="h5" gutterBottom>
               Curated Content
             </Typography>
-            <Typography variant="body1">
+            <Typography component="div" variant="body1">
               Our catalog of innovation tools is carefully curated to include proven methodologies from various fields, including design thinking, lean startup, agile development, and more. Each tool is thoroughly researched and documented to provide you with comprehensive information.
             </Typography>
           </Paper>
@@ -83,7 +83,7 @@ export default function AboutPage() {
             <Typography variant="h5" gutterBottom>
               AI-Powered Recommendations
             </Typography>
-            <Typography variant="body1">
+            <Typography component="div" variant="body1">
               We use advanced AI technology to analyze your specific context and recommend the most suitable innovation tools. Our recommendation engine considers factors such as your goals, team size, time constraints, experience level, and industry to provide personalized suggestions.
             </Typography>
           </Paper>
@@ -94,7 +94,7 @@ export default function AboutPage() {
         <Typography variant="h5" gutterBottom>
           Ready to find the right innovation tools for your project?
         </Typography>
-        <Typography variant="body1">
+        <Typography component="div" variant="body1">
           Start by browsing our tool catalog or getting personalized recommendations.
         </Typography>
       </Box>
